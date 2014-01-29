@@ -13,13 +13,13 @@ Software that runs on the Raspberry Pi using 1 wire temperature sensors and soli
 - *Still evaluating the SSR solution for running the 240v 5500w heating element in the boil kettle
 
 ###Setup
-- You first have to run the following commands to load the kernel modules
-
+You first have to run the following commands to load the kernel modules
 
     sudo modprobe w1_gpio && sudo modprobe w1_therm
     sudo sh -c "echo 'w1_gpio\nw1_therm\n' >> /etc/modules"
     
 
+#####Next Steps
 - Connect thermo sensors to GPIO pin, power and ground.
 - Add 4.7k ohm resistor between power and GPIO pin
 - Check the directory at /sys/bus/w1/devices/
