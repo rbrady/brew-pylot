@@ -18,6 +18,7 @@ Software that runs on the Raspberry Pi using 1 wire temperature sensors and soli
 
     sudo modprobe w1_gpio && sudo modprobe w1_therm
     sudo sh -c "echo 'w1_gpio\nw1_therm\n' >> /etc/modules"
+    
 
 - Connect thermo sensors to GPIO pin, power and ground.
 - Add 4.7k ohm resistor between power and GPIO pin
