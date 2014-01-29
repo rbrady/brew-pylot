@@ -18,10 +18,10 @@ You first have to run the following commands to load the kernel modules
     sudo modprobe w1_gpio && sudo modprobe w1_therm
     sudo sh -c "echo 'w1_gpio\nw1_therm\n' >> /etc/modules"
 
--Connect thermo sensors to GPIO pin, power and ground.
--Add 4.7k ohm resistor between power and GPIO pin
--Check the directory at /sys/bus/w1/devices/
--Read files in each $DIR named w1_slave
+- Connect thermo sensors to GPIO pin, power and ground.
+- Add 4.7k ohm resistor between power and GPIO pin
+- Check the directory at /sys/bus/w1/devices/
+- Read files in each $DIR named w1_slave
 
 Files look like:
 
