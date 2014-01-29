@@ -14,6 +14,7 @@ Software that runs on the Raspberry Pi using 1 wire temperature sensors and soli
 
 ###Setup
 You first have to run the following commands to load the kernel modules
+
   sudo modprobe w1_gpio && sudo modprobe w1_therm
   sudo sh -c "echo 'w1_gpio\nw1_therm\n' >> /etc/modules"
 
@@ -23,5 +24,6 @@ You first have to run the following commands to load the kernel modules
 -Read files in each $DIR named w1_slave
 
 Files look like:
+
   0b 00 4b 46 7f ff 05 10 95 : crc=95 YES
   0b 00 4b 46 7f ff 05 10 95 t=22564
