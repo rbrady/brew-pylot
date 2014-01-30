@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flask import Flask
+from flask import request, Flask
 from flask.ext.restful import abort, Resource, Api
 import envoy
 import os
@@ -15,11 +15,20 @@ def get_thermometers():
 
 class Thermometer(Resource):
 	def get(self, therm_id):
+		format=request.args.get('format', 'raw')
 		f=open(os.path.join(ROOT_DEVICE_DIR,therm_id,'w1_slave'), 'r')
 		result=f.readlines()
 		f.close()
 		if "YES" in result[0]:
-			return {'raw': result[1].replace('\n', '').split('t=')[1]}
+			#return {'raw': result[1].replace('\n', '').split('t=')[1]}
+			raw=result[1].replace('\n', '').split('t=')[1]
+			if 'f' in format:
+				return {'farenheight': ((raw / 1000.0) * 1.8000) + 32.00}
+			elif 'c' in format:
+				return {'celsius': raw / 1000.00}
+			else:
+				return {'raw': raw}
+
 	        else:
 		    abort(500, "Thermometer not found")
 
@@ -28,8 +37,18 @@ class Thermometers(Resource):
     def get(self):
         return get_thermometers()
 
+class Power120(Resource):
+	def get(self):
+		return {'TODO': 'Implement this for managing the pump(s)'}
+
+class Power240(Resource):
+	def get(self):
+		return {'TODO': 'Implement this for managing the heating element(s)'}
+
 api.add_resource(Thermometers, '/thermometers')
 api.add_resource(Thermometer, '/thermometers/<string:therm_id>')
+api.add_resource(Power120, '/powered')
+api.add_resource(Power240, '/high-powered')
 
 if __name__ == "__main__":
     app.run(debug=True)
