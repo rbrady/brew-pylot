@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# This is a sample service used for prototyping
+# This file will be replaced in the near future
+# Don't rely on this being here too long
 from flask import request, Flask
 from flask.ext.restful import abort, Resource, Api
 import envoy
