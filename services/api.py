@@ -2,6 +2,7 @@
 from flask import Flask
 from flask.ext.restful import abort, Resource, Api
 import envoy
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -14,7 +15,7 @@ def get_thermometers():
 
 class Thermometer(Resource):
 	def get(self, therm_id):
-		f=open(os.path.join(ROOT_DEVICE_DIR,therm_id), 'r')
+		f=open(os.path.join(ROOT_DEVICE_DIR,therm_id,'w1_slave'), 'r')
 		result=f.readlines()
 		f.close()
 		if "YES" in result[0]:
