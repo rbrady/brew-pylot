@@ -29,36 +29,42 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="equipment--materials--parts" class="anchor" href="#equipment--materials--parts"><span class="octicon octicon-link"></span></a>Equipment / Materials / Parts</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<ul>
+<li>Raspberry Pi (<a href="http://www.raspberrypi.org/">http://www.raspberrypi.org/</a>)</li>
+<li>DS18b20 Waterproof Temperature Sensors <a href="http://www.amazon.com/gp/product/B00CC7TGKO/ref=oh_details_o02_s00_i04?ie=UTF8&amp;psc=1">source</a>
+</li>
+<li>Pi Cobbler Breakout Board <a href="http://www.amazon.com/gp/product/B00EBXP3R2/ref=oh_details_o02_s00_i00?ie=UTF8&amp;psc=1">source</a>
+</li>
+<li>Wireless USB Adapter <a href="http://www.amazon.com/gp/product/B003MTTJOY/ref=oh_details_o02_s00_i03?ie=UTF8&amp;psc=1">source</a>
+</li>
+<li>2 Ch 5V SSR <a href="http://www.amazon.com/gp/product/B00E0NTPP4/ref=oh_details_o02_s00_i05?ie=UTF8&amp;psc=1">source</a>
+</li>
+<li>4.7k Ohm resistor</li>
+<li>*Still evaluating the SSR solution for running the 240v 5500w heating element in the boil kettle</li>
+</ul><h3>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>You first have to run the following commands to load the kernel modules</p>
+
+<pre><code>    sudo modprobe w1_gpio &amp;&amp; sudo modprobe w1_therm
+    sudo sh -c "echo 'w1_gpio\nw1_therm\n' &gt;&gt; /etc/modules"
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h5>
+<a name="next-steps" class="anchor" href="#next-steps"><span class="octicon octicon-link"></span></a>Next Steps</h5>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<ul>
+<li>Connect thermo sensors to GPIO pin, power and ground.</li>
+<li>Add 4.7k ohm resistor between power and GPIO pin</li>
+<li>Check the directory at /sys/bus/w1/devices/</li>
+<li>Read files in each $DIR named w1_slave</li>
+</ul><p>Files look like:</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>    0b 00 4b 46 7f ff 05 10 95 : crc=95 YES
+    0b 00 4b 46 7f ff 05 10 95 t=22564
+</code></pre>
         </section>
 
         <aside id="sidebar">
