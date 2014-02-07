@@ -1,11 +1,39 @@
 #!/usr/bin/env python
 
+# The purpose of this file is a whiteboard of sorts
+# to put my thoughts into something.
+
 # There are two primary types of devices that compose
 # the brewing system.  Publisher and Subscriber.
 #
 # A thermometer sensor publishes it's id and temperature at a
 # an interval defined in the .conf file.  A thermometer is a 
-# device that is always on.
+# device that is always on, as far as the os is concerned.
+# When our thermometer object runs it pushes it's status to
+# the message bus.
+class Thermometer(object):
+    def __init__(self, id):
+        # read config values
+        self.id = id
+        pass
+
+    def start(self):
+        # log
+        # connectivity to msg bus
+        self.run()
+        pass
+
+    def run(self):
+        while True:
+            temp = self.get_temperature()
+            self.publish(temp)
+            time.sleep(self.interval)
+
+    def stop(self):
+        # flush temp
+        # log
+        # stop publishing
+        pass
 
 # A heating element is a device that receives messages like
 # turn on / turn off / set power.  It may publish a status
