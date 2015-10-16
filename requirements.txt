@@ -1,0 +1,2 @@
+Adafruit-BBIO==0.0.30
+w1thermsensor==0.2.2
